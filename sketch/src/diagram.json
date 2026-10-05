@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "author": "Relogio de Forca ESP32",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-breadboard",
+      "id": "bb",
+      "top": -31.8,
+      "left": -218,
+      "attrs": { "color": "#575756" }
+    },
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 206.3,
+      "left": -62.6,
+      "attrs": {}
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled",
+      "top": 46.26,
+      "left": -441.23,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay",
+      "top": -201.4,
+      "left": 115.2,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht",
+      "top": -201.3,
+      "left": 340.2,
+      "attrs": { "temperature": "27.8", "humidity": "83" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_acs",
+      "top": 212.2,
+      "left": -327.7,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "board-bmp180",
+      "id": "bmp1",
+      "top": 226.24,
+      "left": 230.66,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    ["esp:TX0", "$serialMonitor:RX", "", []],
+    ["esp:RX0", "$serialMonitor:TX", "", []],
+    ["esp:3V3", "bb:bp.25", "red", ["h66.9", "v-210.3"]],
+    [
+      "esp:D21",
+      "oled:SDA",
+      "purple",
+      ["h9.3", "v-86.8", "h-252.2", "v-138.1", "h-170.13"]
+    ],
+    ["esp:D22", "oled:SCL", "orange", ["h-38.7", "v-205.6", "h-384.16"]],
+    ["esp:D34", "pot_acs:SIG", "green", ["h-60.2", "v-9.8", "h-86.4", "v-0.4"]],
+    ["relay:VCC", "bb:tp.25", "red", ["h-19.2", "v162.9"]],
+    ["esp:D18", "relay:IN", "blue", ["h-20", "v-250", "h180"]],
+    ["esp:D15", "dht:SDA", "green", ["h0"]],
+    ["esp:GND.1", "bb:bn.25", "black", ["h57.3", "v-190.8"]],
+    [
+      "oled:VCC",
+      "bb:bp.1",
+      "red",
+      ["v-23.92", "h76.81", "v124.8", "h76.8", "v0.9"]
+    ],
+    ["oled:GND", "bb:bn.1", "black", ["v-43.12", "h163.06", "v163.2"]],
+    ["pot_acs:VCC", "bb:bp.2", "red", ["h0"]],
+    ["pot_acs:GND", "bb:bn.3", "black", ["h0"]],
+    ["dht:VCC", "bb:tp.47", "red", ["v0"]],
+    ["relay:GND", "bb:tn.24", "black", ["h0"]],
+    ["dht:GND", "bb:tn.49", "black", ["v28.8", "h-8.8"]],
+    ["bb:tn.50", "bb:bn.50", "black", ["h37.6", "v174"]],
+    ["bb:tp.50", "bb:bp.50", "red", ["h56.8", "v174"]],
+    ["bmp1:3.3V", "bb:bp.45", "red", ["h0"]],
+    ["bmp1:GND", "bb:bn.44", "black", ["h0"]],
+    ["bb:53b.j", "bmp1:SCL", "cyan", ["v0"]],
+    ["esp:D21", "bb:29b.j", "green", ["h0"]],
+    ["esp:D22", "bb:28b.j", "green", ["h0"]],
+    ["bmp1:SDA", "bb:54b.j", "green", ["h0"]],
+    ["bb:54b.i", "bb:29b.i", "green", ["v0"]],
+    ["bb:28b.h", "bb:53b.h", "green", ["v0"]]
+  ],
+  "serialMonitor": { "collapse": false, "display": "always" },
+  "dependencies": {}
+}
